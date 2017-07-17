@@ -15,6 +15,7 @@
 		7ED8E09D1F1D4B4400A36351 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7ED8E09B1F1D4B4400A36351 /* LaunchScreen.storyboard */; };
 		7ED8E0A61F1D4BF200A36351 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E0A51F1D4BF200A36351 /* MyTableViewCell.m */; };
 		7ED8E0A91F1D4EA500A36351 /* Photo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E0A81F1D4EA500A36351 /* Photo.m */; };
+		7ED8E0AC1F1D624E00A36351 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E0AB1F1D624E00A36351 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		7ED8E0A51F1D4BF200A36351 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		7ED8E0A71F1D4EA500A36351 /* Photo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Photo.h; sourceTree = "<group>"; };
 		7ED8E0A81F1D4EA500A36351 /* Photo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Photo.m; sourceTree = "<group>"; };
+		7ED8E0AA1F1D624E00A36351 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		7ED8E0AB1F1D624E00A36351 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +73,8 @@
 				7ED8E0A51F1D4BF200A36351 /* MyTableViewCell.m */,
 				7ED8E0A71F1D4EA500A36351 /* Photo.h */,
 				7ED8E0A81F1D4EA500A36351 /* Photo.m */,
+				7ED8E0AA1F1D624E00A36351 /* DetailViewController.h */,
+				7ED8E0AB1F1D624E00A36351 /* DetailViewController.m */,
 				7ED8E0961F1D4B4400A36351 /* Main.storyboard */,
 				7ED8E08D1F1D4B4400A36351 /* Supporting Files */,
 			);
@@ -165,6 +170,7 @@
 				7ED8E0921F1D4B4400A36351 /* AppDelegate.m in Sources */,
 				7ED8E0A91F1D4EA500A36351 /* Photo.m in Sources */,
 				7ED8E08F1F1D4B4400A36351 /* main.m in Sources */,
+				7ED8E0AC1F1D624E00A36351 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

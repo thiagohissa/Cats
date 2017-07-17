@@ -14,5 +14,6 @@
 @property (nonatomic) NSString *idAPI;
 @property (nonatomic) NSString *secret;
 @property (nonatomic) NSString *title;
+@property (nonatomic) NSString *photoImageName;
 - (instancetype)initWithServer:(NSString*)server andFarm:(NSString*)farm andID:(NSString*)idAPI andSecret:(NSString*)secret andTitle:(NSString*)title;
 @end

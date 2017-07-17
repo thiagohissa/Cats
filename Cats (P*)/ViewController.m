@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "MyTableViewCell.h"
 #import "Photo.h"
+#import "DetailViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *mytable;
@@ -41,12 +42,11 @@
     
     cell.cellTitle.text = photo.title;
     cell.cellSubtitle.text = photo.idAPI;
-    // https://farm{farm-id}.staticflickr.com/{server-id}/{id}_{secret}.jpg
-    NSString *myURL = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",photo.farm,photo.server,photo.idAPI,photo.secret];
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:myURL]]];
-    cell.cellImage.image = image;
     
-    NSLog(@"%@",myURL);
+
+    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:photo.photoImageName]]];
+    cell.cellImage.image = image;
+
     return cell;
     
 }
@@ -54,10 +54,13 @@
 
 
 
+
+
+
 -(void)loadData{
     
     
-    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=db3e12fd37ab1610f43df6372788eb9d&tags=cat"];
+    NSURL *url = [NSURL URLWithString:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&format=json&nojsoncallback=1&api_key=db3e12fd37ab1610f43df6372788eb9d&tags=surf"];
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -95,7 +98,13 @@
 
 
 
-
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+        NSIndexPath *indexPath = [self.mytable indexPathForSelectedRow];
+     Photo *photo = self.objects[indexPath.row];
+        UINavigationController *nav = (UINavigationController *)[segue destinationViewController];
+    DetailViewController *controller = [nav.viewControllers firstObject];
+        [controller setDetailItem:photo];
+}
 
 
 
