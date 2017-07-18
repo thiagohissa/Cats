@@ -98,6 +98,9 @@
 
 
 
+
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
         NSIndexPath *indexPath = [self.mytable indexPathForSelectedRow];
      Photo *photo = self.objects[indexPath.row];

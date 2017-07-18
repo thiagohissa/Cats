@@ -67,12 +67,12 @@
 		7ED8E08C1F1D4B4400A36351 /* Cats (P*) */ = {
 			isa = PBXGroup;
 			children = (
+				7ED8E0A71F1D4EA500A36351 /* Photo.h */,
+				7ED8E0A81F1D4EA500A36351 /* Photo.m */,
 				7ED8E0931F1D4B4400A36351 /* ViewController.h */,
 				7ED8E0941F1D4B4400A36351 /* ViewController.m */,
 				7ED8E0A41F1D4BF200A36351 /* MyTableViewCell.h */,
 				7ED8E0A51F1D4BF200A36351 /* MyTableViewCell.m */,
-				7ED8E0A71F1D4EA500A36351 /* Photo.h */,
-				7ED8E0A81F1D4EA500A36351 /* Photo.m */,
 				7ED8E0AA1F1D624E00A36351 /* DetailViewController.h */,
 				7ED8E0AB1F1D624E00A36351 /* DetailViewController.m */,
 				7ED8E0961F1D4B4400A36351 /* Main.storyboard */,
@@ -325,6 +325,7 @@
 				7ED8E0A31F1D4B4400A36351 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

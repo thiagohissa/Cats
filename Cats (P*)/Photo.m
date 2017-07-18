@@ -20,7 +20,7 @@
         _server = server;
         _idAPI = idAPI;
         _title = title;
-        _photoImageName = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",self.farm,self.server,self.idAPI,self.secret];
+        _photoImageName = [NSString stringWithFormat:@"https://farm%@.staticflickr.com/%@/%@_%@.jpg",_farm,_server,_idAPI,_secret];
     }
     return self;
 }

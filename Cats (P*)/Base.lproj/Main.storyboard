@@ -29,7 +29,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qmK-vu-Sm1" id="ziC-t0-yOH">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="134.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D5q-wf-Gwv">
@@ -155,7 +155,6 @@
         <!--Navigation Controller-->
         <scene sceneID="VBW-2S-5Fd">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y8j-0V-2BL" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Yn6-y4-UTd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="3cT-Kt-EGl">
@@ -167,6 +166,7 @@
                         <segue destination="1dw-9t-xHf" kind="relationship" relationship="rootViewController" id="nTg-nb-UmA"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y8j-0V-2BL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="860" y="921.58920539730138"/>
         </scene>
