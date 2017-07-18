@@ -11,6 +11,7 @@
 #import "Photo.h"
 #import "DetailViewController.h"
 #import "SearchViewController.h"
+#import "ShowAllViewController.h"
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource, SearchItemDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
@@ -57,7 +58,7 @@
 
 
 
-
+#pragma Search (NO Location)
 
 -(void)loadData:(NSString*)search{
     
@@ -65,16 +66,10 @@
 // key = db3e12fd37ab1610f43df6372788eb9d
     
     
-    // This url does not work with search - START
-    
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=db3e12fd37ab1610f43df6372788eb9d&tags=%@&has_geo=1&extras=url_m&format=json&nojsoncallback=1", search]];
     
-    // This url does not work with search - END
     
-    
-    
-    
-    
+   
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -111,6 +106,56 @@
 }
 
 
+
+
+
+#pragma Search By Location
+
+-(void)loadData:(NSString*)search withLat:(double)lat andLon:(double)lon{
+    
+    //  Searc by id = https://api.flickr.com/services/rest/?method=flickr.photos.geo.getLocation&api_key=db3e12fd37ab1610f43df6372788eb9d&photo_id=4256176301&format=json&nojsoncallback=1
+    // key = db3e12fd37ab1610f43df6372788eb9d
+    
+    // https://api.flickr.com/services/rest/?method=flickr.places.findByLatLon&api_key=db3e12fd37ab1610f43df6372788eb9d&lat=%f&lon=%f&format=json&nojsoncallback=1
+    
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.flickr.com/services/rest/?method=flickr.photos.geo.photosForLocation&api_key=db3e12fd37ab1610f43df6372788eb9d&lat=%f&lon=%f&format=json&nojsoncallback=1&auth_token=72157684196964440-49f543050c32d51d&api_sig=27c69255a1fd8c71b9e45ea361f20e08",lat,lon]];
+    
+    
+    NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
+    
+    NSURLSessionDataTask *dataTaskSearch = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        
+        if(error){
+            NSLog(@"Error...");
+            return;
+        }
+        
+        NSError *jsonError = nil;
+        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
+        
+        
+        NSDictionary *dict = [info valueForKeyPath:@"photos.photo"];
+        NSMutableArray *temp = [[NSMutableArray alloc] init];
+        for (NSDictionary *apiData in dict) {
+            Photo *photo = [[Photo alloc] initWithServer:apiData[@"server"] andFarm:apiData[@"farm"] andID:apiData[@"id"] andSecret:apiData[@"secret"] andTitle:apiData[@"title"]];
+            [temp addObject:photo];
+        }
+        
+        
+        self.objects = [NSMutableArray arrayWithArray:temp];
+        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+            [self.mytable reloadData];
+        }];
+        
+    }];
+    
+    [dataTaskSearch resume];
+    
+}
 
 
 
@@ -165,6 +210,12 @@
         
     }
     
+    else if([segue.identifier isEqualToString:@"showAllSegue"]){
+        UINavigationController *nav = (UINavigationController *)[segue destinationViewController];
+        ShowAllViewController *controller = [nav.viewControllers firstObject];
+        [controller setMap:self.objects];
+    }
+    
     else{
         UINavigationController *nav = segue.destinationViewController;
         SearchViewController *addVC = nav.viewControllers[0];
@@ -184,15 +235,23 @@
 
 
 
-
-
-
-
 // Search Delegate Method
 
 -(void)searchString:(NSString *)string{
     [self loadData:string];
 }
+
+-(void)searchString:(NSString *)string withLat:(double)lat andLon:(double)lon{
+    [self loadData:string withLat:lat andLon:lon];
+}
+
+
+
+
+
+- (IBAction)showAllButton:(id)sender {
+}
+
 
 
 

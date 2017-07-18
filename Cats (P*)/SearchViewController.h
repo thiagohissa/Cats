@@ -14,6 +14,8 @@
 
 -(void)searchString:(NSString *)string;
 
+-(void)searchString:(NSString *)string withLat:(double)lat andLon:(double)lon;
+
 @end
 
 
@@ -21,4 +23,6 @@
 @interface SearchViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *searchTextField;
 @property (nonatomic, strong) id <SearchItemDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UISwitch *switchLocation;
+@property (nonatomic) CLLocationManager *   locationManager;
 @end

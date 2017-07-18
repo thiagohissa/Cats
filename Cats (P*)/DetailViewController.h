@@ -11,12 +11,11 @@
 
 @interface DetailViewController : UIViewController
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
-//@property (weak, nonatomic) IBOutlet UIImageView *detailsImage;
+
 @property (weak, nonatomic) IBOutlet UILabel *detailsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *detailsSubTitle;
 @property (nonatomic) NSString *titlePhoto;
 @property (nonatomic) NSString *subtitlePhoto;
-//@property (nonatomic) NSString *imagePhoto;
 
 @property (nonatomic) double lon;
 @property (nonatomic) double lat;

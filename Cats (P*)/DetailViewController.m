@@ -27,17 +27,22 @@
    // Map has to be set here
     MKCoordinateSpan span = MKCoordinateSpanMake(.5f, .5f);
     self.mapView.region = MKCoordinateRegionMake(self.coordinateDetails, span);
+    self.mapView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.mapView.showsBuildings = YES;
 }
 
 - (void)setDetailItem:(Photo *)photo {
     _titlePhoto = photo.title;
     _subtitlePhoto = photo.idAPI;
- //   _imagePhoto = photo.photoImageName;
     _lat = photo.tempLAT;
     _lon = photo.tempLON;
     _coordinateDetails = photo.coordinate;
     [self.mapView addAnnotation:photo];
     [self configureView];
+}
+
+- (IBAction)dismissView:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
 }
 
 @end

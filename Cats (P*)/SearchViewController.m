@@ -10,7 +10,9 @@
 
 
 @interface SearchViewController () <CLLocationManagerDelegate> {
-    CLLocationManager *locationManager;
+  //  CLLocationManager *locationManager;
+    double currentLat;
+    double currentLon;
 }
 @end
 
@@ -21,19 +23,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
-        [locationManager requestWhenInUseAuthorization];
-    
-    [locationManager startUpdatingLocation];
+    self.locationManager = [[CLLocationManager alloc]init];
+    self.locationManager.delegate = self;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.distanceFilter = 5;
+    [self.locationManager requestWhenInUseAuthorization];
+    [self.locationManager startUpdatingLocation];
 }
 
 - (IBAction)searchButton:(id)sender {
-    [self searchString:self.searchTextField.text];
+    if(self.switchLocation.on){
+        [self searchString:self.searchTextField.text withLat:currentLat andLon:currentLon];
+    }
+    else if(!self.switchLocation.on){
+        [self searchString:self.searchTextField.text];
+    }
+    
 }
 
 // send data to delegate
@@ -43,14 +48,21 @@
     [self dismissViewControllerAnimated: true completion:nil];
 }
 
+-(void)searchString:(NSString *)string withLat:(double)lat andLon:(double)lon{
+    [self.delegate searchString:self.searchTextField.text withLat:currentLat andLon:currentLon];
+    [self dismissViewControllerAnimated: true completion:nil];
+}
+
 
 
 // Location Service:
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
+//    NSLog(@"OldLocation %f %f", oldLocation.coordinate.latitude, oldLocation.coordinate.longitude);
     NSLog(@"NewLocation %f %f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    [locationManager stopUpdatingLocation];
+    currentLat = newLocation.coordinate.latitude;
+    currentLon = newLocation.coordinate.longitude;
+    [self.locationManager stopUpdatingLocation];
 }
 
 
